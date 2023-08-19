@@ -1,0 +1,7 @@
+* Luau Tree Sitter Mode
+Emacs major mode for Roblox's Lua variant, Luau.
+
+Based on Treesitter integration new to Emacs29.
+
+See:
+  - https://github.com/ryan-c-scott/tree-sitter-luau
