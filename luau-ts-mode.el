@@ -87,7 +87,9 @@
 
    :language 'luau
    :feature 'builtin
-   '((["pcall" "coroutine" "require"]) @font-lock-keyword-face)
+   ;; HACK: Adding these caused issues with hl-todo-mode
+   ;; .("pcall" "coroutine")
+   '((["require"]) @font-lock-keyword-face)
    )
   "Tree-sitter font-lock settings for `luau-ts-mode'.")
 
