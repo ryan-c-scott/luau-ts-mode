@@ -171,6 +171,11 @@ Return nil if there is no name or if NODE is not a defun node."
 
     (setq-local treesit-defun-name-function #'luau-ts-mode--defun-name)
 
+    (setq-local treesit-defun-type-regexp
+                (regexp-opt '("type_definition"
+                              "function$"
+                              "function_local")))
+
     (treesit-major-mode-setup)))
 
 ;;;###autoload
