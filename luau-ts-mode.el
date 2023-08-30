@@ -175,7 +175,7 @@ Return nil if there is no name or if NODE is not a defun node."
 
     (setq-local treesit-defun-type-regexp
                 (regexp-opt '("type_definition"
-                              "function$"
+                              "function_definition"
                               "function_local")))
 
     (treesit-major-mode-setup)))
