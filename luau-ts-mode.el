@@ -129,6 +129,8 @@ Return nil if there is no name or if NODE is not a defun node."
   (pcase (treesit-node-type node)
     ("funcname"
      (treesit-node-text node))
+    ("function_local"
+     (treesit-node-text node))
     ("require"
      (treesit-node-text
       (treesit-node-child-by-field-name node "module")))
@@ -138,6 +140,13 @@ Return nil if there is no name or if NODE is not a defun node."
 
 (defun luau-ts-mode--node-is-require (node)
   (treesit-node-child-by-field-name node "module"))
+
+(defun luau-ts-mode--node-is-top-level (node)
+  "Return t if the node is a child of the top-level document node."
+  (not
+   (treesit-node-parent
+    (treesit-node-parent
+     (treesit-node-parent node)))))
 
 ;;;###autoload
 (define-derived-mode luau-ts-mode prog-mode "LUAU"
@@ -169,7 +178,7 @@ Return nil if there is no name or if NODE is not a defun node."
     (setq-local treesit-simple-imenu-settings
                 `(("Type" "\\`type_definition\\'" nil nil)
                   ("Require" "\\`require\\'" luau-ts-mode--node-is-require nil)
-                  ("Function" "\\`funcname\\'" nil nil)))
+                  ("Function" "\\`funcname\\'" luau-ts-mode--node-is-top-level nil)))
 
     (setq-local treesit-defun-name-function #'luau-ts-mode--defun-name)
 
