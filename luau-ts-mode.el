@@ -107,6 +107,7 @@
        ((node-is "else") parent-bol 0)
        ((node-is "error") prev-sibling 0)
 
+       ((parent-is "assignment") parent-bol ,offset)
        ((parent-is "if") parent-bol ,offset)
        ((parent-is "loop_for") parent-bol ,offset)
        ((parent-is "loop_while") parent-bol ,offset)
