@@ -192,10 +192,12 @@ Return nil if there is no name or if NODE is not a defun node."
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.lua\\'" . luau-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.luau\\'" . luau-ts-mode))
 
-;; Support org-mode, when adding a code block for dot, use this mode
+;; Support org-mode, when adding a code block for luau, use this mode
 (with-eval-after-load 'org-src
   (defvar org-src-lang-modes)
+  (add-to-list 'org-src-lang-modes  '("lua" . luau-ts))
   (add-to-list 'org-src-lang-modes  '("lua" . luau-ts)))
 
 (provide 'luau-ts-mode)
